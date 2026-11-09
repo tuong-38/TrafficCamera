@@ -50,13 +50,18 @@ def run_video_tracking(video_path, weights_path, conf_threshold, output_dir):
         curr_time = time.time()
         calc_fps = 1 / (curr_time - prev_time) if (curr_time - prev_time) > 0 else 0
         prev_time = curr_time
-        
+
         cv2.putText(annotated_frame, f"FPS: {calc_fps:.1f}", (20, 40),
                     cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
         # 7. Ghi frame vào file đầu ra
         out.write(annotated_frame)
 
+        # 8. Hiển thị cửa sổ video trực tiếp & lắng nghe phím 'q' để thoát sớm
+        cv2.imshow("Traffic Video Detection & ByteTrack", annotated_frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            print("[*] Người dùng bấm 'q' để dừng video sớm.")
+            break
     cap.release()
     out.release()
     cv2.destroyAllWindows()

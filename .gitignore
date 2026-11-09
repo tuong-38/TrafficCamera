@@ -218,3 +218,18 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Weights
+weights/*.pt
+weights/*.onnx
+weights/*.engine
+
+# Datasets & Outputs
+datasets/
+runs/
+
+# Python & IDE
+__pycache__/
+*.pyc
+.vscode/
+.idea/
